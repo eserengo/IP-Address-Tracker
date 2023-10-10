@@ -1,5 +1,5 @@
 <template>
-  <main v-if="IP_Data">
+  <main v-if="IP_Data" v-cloak>
     <section class="info">
       <div>
         <p>ip adress</p>
@@ -19,13 +19,13 @@
       </div>
     </section>
 
-    <section style="height:50vh; width:100vw"  class="map" >
+    <section style="height:75vh; width:100vw" class="map" v-cloak>
       <l-map ref="map" v-model:zoom="zoom" :center="setLatLang || [0, 0]" :use-global-leaflet="false">
         <l-tile-layer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           layer-type="base"
-          name="OpenStreetMap"
-        ></l-tile-layer>
+          name="OpenStreetMap">
+        </l-tile-layer>
         <l-marker :lat-lng="setLatLang || [0, 0]" ></l-marker>
       </l-map>
     </section>
@@ -80,7 +80,7 @@ export default {
       return this.IP_Data.ip && this.IP_Data.ip;
     },
     setLocation() {
-      return this.IP_Data.location && `${this.IP_Data.location.city}, ${this.IP_Data.location.region}`;
+      return this.IP_Data.location && `${this.IP_Data.location.city}, ${this.IP_Data.location.country}`;
     },
     setTimezone() {
       return this.IP_Data.location && `UTC ${this.IP_Data.location.timezone}`;
@@ -96,9 +96,5 @@ export default {
   created() {
     this.fetchData();
   },
-
-  updated() {
-    console.log(this.setLatLang);
-  }
 }
 </script>

@@ -14,7 +14,7 @@
           autocomplete="off"
           autocorrect="off"
           spellcheck="false"
-          size="30"
+          size="50"
           required />
         <button type="submit" class="btn">
           <img src="./assets/images/icon-arrow.svg" alt="arrow icon" >
